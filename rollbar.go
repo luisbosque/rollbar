@@ -168,9 +168,8 @@ func buildError(level string, err error, stack Stack, fields ...*Field) map[stri
 
 	body := buildBody(level, title)
 	data := body["data"].(map[string]interface{})
-	errBody, fingerprint := errorBody(err, stack)
+	errBody, _ := errorBody(err, stack)
 	data["body"] = errBody
-	data["fingerprint"] = fingerprint
 
 	for _, field := range fields {
 		data[field.Name] = field.Data
